@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sate Kambing Pak Slamet | Legenda Jombang</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Variables & Reset --- */
+        :root {
+            --bg-color: #F9F6F0; 
+            --text-main: #3A2A18; 
+            --accent-red: #8B261A; 
+            --accent-gold: #C09A5B; 
+            --border-color: #D4C5B0;
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .text-center { text-align: center; }
+        .bg-light { background-color: #F1EBE1; }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            font-family: var(--font-body);
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-red);
+            color: #fff;
+            border: 2px solid var(--accent-red);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--accent-red);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--bg-color);
+            border: 2px solid var(--bg-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+        }
+
+        /* --- Navbar --- */
+/* --- Navbar --- */
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(249, 246, 240, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            /* Hide the navbar by pushing it up out of view */
+            transform: translateY(-100%); 
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* This class will be added by JavaScript on scroll */
+        #navbar.navbar-scrolled {
+            transform: translateY(0);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            color: var(--accent-red);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-red);
+        }
+
+        /* --- Hero Section --- */
+        #hero {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(58, 42, 24, 0.7), rgba(58, 42, 24, 0.9)); 
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: var(--bg-color);
+            max-width: 900px;
+            padding: 0 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .hero-content .subtitle {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .hero-content .title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content .description {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* --- History Section --- */
+        .history-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .history-image img {
+            width: 100%;
+            border-radius: 5px;
+            border: 10px solid #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            filter: sepia(0.4) contrast(1.1); 
+            transition: filter 0.5s ease;
+        }
+
+        .history-image img:hover {
+            filter: sepia(0) contrast(1); 
+        }
+
+        .history-text p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        /* --- Menu Book UI Section --- */
+        .menu-book-wrapper {
+            perspective: 1000px;
+            padding: 2rem 0;
+        }
+
+        .menu-book {
+            display: flex;
+            background-color: #FDFBF7;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 5px;
+            box-shadow: 0 20px 40px rgba(58, 42, 24, 0.15);
+            position: relative;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .menu-book::before {
+            content: '';
+            position: absolute;
+            top: 0; bottom: 0; left: 50%;
+            width: 2px;
+            background: linear-gradient(to right, rgba(0,0,0,0.05), rgba(0,0,0,0.02));
+            border-left: 1px solid var(--border-color);
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .menu-page {
+            flex: 1;
+            padding: 3rem 4rem;
+            position: relative;
+        }
+
+        .menu-page-inner {
+            border: 2px double var(--accent-gold);
+            padding: 2.5rem 2rem;
+            height: 100%;
+        }
+
+        .menu-category-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            color: var(--accent-red);
+            font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .menu-category-title::after {
+            content: '❦';
+            display: block;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin-top: 0.5rem;
+        }
+
+        .menu-item-list {
+            list-style: none;
+        }
+
+        .menu-item-list li {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.8rem;
+        }
+
+        .item-header {
+            display: flex;
+            align-items: flex-end;
+            width: 100%;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--text-main);
+        }
+
+        .item-name {
+            font-weight: 700;
+        }
+
+        .item-dots {
+            flex-grow: 1;
+            border-bottom: 2px dotted var(--border-color);
+            margin: 0 10px;
+            position: relative;
+            top: -6px;
+        }
+
+        .item-price {
+            font-style: italic;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: #666;
+            white-space: nowrap;
+        }
+
+        .item-desc {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 0.4rem;
+            line-height: 1.4;
+        }
+
+        /* --- Testimonials Section --- */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-card {
+            background-color: var(--bg-color);
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .testimonial-card .stars {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .testimonial-card h4 {
+            color: var(--accent-red);
+            font-size: 1.1rem;
+        }
+
+        /* --- Gallery Section --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            height: 250px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Lightbox Modal */
+        #lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 2000;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        #lightbox.active {
+            opacity: 1; pointer-events: auto;
+        }
+
+        #lightbox img {
+            max-width: 90%; max-height: 90%;
+            border: 5px solid var(--bg-color);
+            border-radius: 5px;
+        }
+
+        #lightbox-close {
+            position: absolute; top: 20px; right: 30px;
+            color: #fff; font-size: 3rem; cursor: pointer;
+        }
+
+        /* --- Location Section --- */
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .contact-details {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .contact-details li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid var(--accent-gold);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- FAQ Section --- */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 2rem;
+        }
+
+        .faq-item {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+            color: #555;
+        }
+
+        .faq-item.active .faq-answer {
+            padding-bottom: 1.5rem;
+        }
+
+        /* --- Floating WhatsApp --- */
+        .floating-wa {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            animation: pulse-green 2s infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-wa:hover {
+            transform: scale(1.1);
+        }
+
+        .floating-wa svg {
+            width: 35px;
+            height: 35px;
+            fill: #fff;
+        }
+
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            padding: 3rem 0;
+        }
+
+        footer p {
+            margin-top: 1rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design (Mobile Focus) --- */
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 1rem; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            .hero-content { margin-top: 6rem; }
+            .hero-content .title { font-size: 2.2rem; }
+            .hero-content .subtitle { font-size: 1.2rem; }
+            .hero-content .description { font-size: 1rem; }
+            .section-title { font-size: 2rem; }
+            .history-grid, .location-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .cta-group { flex-direction: column; width: 100%; }
+            .btn { width: 100%; }
+            .container { padding: 4rem 1.5rem; }
+            .map-container { height: 300px; }
+            .floating-wa { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+            .floating-wa svg { width: 28px; height: 28px; }
+            
+            .menu-book { flex-direction: column; }
+            .menu-book::before { display: none; }
+            .menu-page { padding: 1.5rem; }
+            .menu-page-inner { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <h1 class="logo">Sate Kambing P. Slamet</h1>
+            <ul class="nav-links">
+                <li><a href="#hero">Beranda</a></li>
+                <li><a href="#sejarah">Kisah</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+                <li><a href="#lokasi">Lokasi</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="subtitle">Melegenda Sejak 1965</p>
+            <h2 class="title">Kisah Legendaris Rasa dari Jantung Kota Jombang</h2>
+            <p class="description">Berkunjung ke Kabupaten Jombang rasanya belum benar-benar lengkap tanpa mencicipi kelezatan Sate Kambing Pak Slamet Ringin Contong. Saksi hidup perjalanan panjang kuliner yang bertahan melintasi zaman.</p>
+            <div class="cta-group">
+                <a href="https://gofood.co.id/jombang/restaurant/sate-pak-slamet-ringin-contong-6c5cd887-bf4a-47ea-92df-86bbc55b22c3?as=gmaps" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Pesan Online Sekarang</a>
+                <a href="#lokasi" class="btn btn-outline">Kunjungi Warung</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sejarah" class="container">
+        <div class="history-grid">
+            <div class="history-image">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Suasana warung sate jadul">
+            </div>
+            <div class="history-text">
+                <h3 class="section-title">Sebuah Rasa yang Tak Lekang Oleh Waktu</h3>
+                <p>Berawal dari sebuah lapak tanpa nama di Pasar Jombang (Pasar Citra Niaga), warung ini dirintis oleh Pak Slamet. Pada tahun 1965, usaha ini berpindah ke kawasan selatan Ringin Contong, di mana nama <strong>"Sate Kambing Pak Slamet Ringin Contong"</strong> mulai dikenal luas dan melekat kuat di ingatan masyarakat.</p>
+                <p>Di balik bangunan bergaya vintage yang menghadirkan nuansa tempo dulu, Sutikah—generasi kedua penerus Pak Slamet—terus menjaga warisan rasa keluarga. Resep dipertahankan apa adanya, tanpa diubah, tanpa dikurangi. Pikulan rotan khas yang ada di warung seakan menjadi simbol perjalanan panjang usaha ini: sederhana, jujur, dan penuh cerita.</p>
+                <p>Kini, menempati lokasi baru sejak 2012, warung ini bukan sekadar tempat makan, melainkan tentang sejarah, ketekunan, dan cinta pada warisan kuliner Jombang.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="bg-light">
+        <div class="container">
+            <div class="text-center menu-header">
+                <h3 class="section-title">Buku Menu</h3>
+                <p class="section-subtitle">Kesederhanaan yang dijaga sepenuh hati, bukti bahwa resep turun-temurun tak pernah salah.</p>
+            </div>
+            
+            <div class="menu-book-wrapper">
+                <div class="menu-book">
+                    <div class="menu-page">
+                        <div class="menu-page-inner">
+                            <h4 class="menu-category-title">Aneka Sate</h4>
+                            <ul class="menu-item-list">
+                                <li>
+                                    <div class="item-header">
+                                        <span class="item-name">Sate Daging</span>
+                                        <span class="item-dots"></span>
+                                        <span class="item-price">Pilihan</span>
+                                    </div>
+                                    <p class="item-desc">Potongan daging kambing murni pilihan yang empuk, dibakar sempurna dengan bumbu rahasia.</p>
+                                </li>
+                                <li>
+                                    <div class="item-header">
+                                        <span class="item-name">Sate Ati</span>
+                                        <span class="item-dots"></span>
+                                        <span class="item-price">Spesial</span>
+                                    </div>
+                                    <p class="item-desc">Hati kambing segar berbalut kecap manis pedas yang lumer di mulut.</p>
+                                </li>
+                                <li>
+                                    <div class="item-header">
+                                        <span class="item-name">Sate Biasa</span>
+                                        <span class="item-dots"></span>
+                                        <span class="item-price">Klasik</span>
+                                    </div>
+                                    <p class="item-desc">Perpaduan pas antara daging dan gurihnya lemak kambing yang menggugah selera.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-page">
+                        <div class="menu-page-inner">
+                            <h4 class="menu-category-title">Berkuah & Nasi</h4>
+                            <ul class="menu-item-list">
+                                <li>
+                                    <div class="item-header">
+                                        <span class="item-name">Gule</span>
+                                        <span class="item-dots"></span>
+                                        <span class="item-price">Kental</span>
+                                    </div>
+                                    <p class="item-desc">Kuah gule kental kaya rempah tradisional dengan potongan daging dan tulang yang lembut.</p>
+                                </li>
+                                <li>
+                                    <div class="item-header">
+                                        <span class="item-name">Kikil</span>
+                                        <span class="item-dots"></span>
+                                        <span class="item-price">Kenyal</span>
+                                    </div>
+                                    <p class="item-desc">Kikil kambing kenyal yang dimasak perlahan hingga bumbu meresap sempurna.</p>
+                                </li>
+                                <li>
+                                    <div class="item-header">
+                                        <span class="item-name">Kepala</span>
+                                        <span class="item-dots"></span>
+                                        <span class="item-price">Utuh</span>
+                                    </div>
+                                    <p class="item-desc">Olahan kepala kambing utuh yang disajikan dengan kuah gurih legendaris.</p>
+                                </li>
+                                <li>
+                                    <div class="item-header">
+                                        <span class="item-name">Nasi Campur</span>
+                                        <span class="item-dots"></span>
+                                        <span class="item-price">Lengkap</span>
+                                    </div>
+                                    <p class="item-desc">Nasi putih hangat dengan paduan aneka lauk olahan kambing yang kaya rasa.</p>
+                                </li>
+                                <li>
+                                    <div class="item-header">
+                                        <span class="item-name">Nasi Gule</span>
+                                        <span class="item-dots"></span>
+                                        <span class="item-price">Mantap</span>
+                                    </div>
+                                    <p class="item-desc">Perpaduan nikmat nasi putih pulen yang disiram dengan kuah gule panas nan gurih.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center menu-header" style="margin-top: 5rem;">
+                <h3 class="section-title">Kata Pelanggan</h3>
+                <p class="section-subtitle">Cerita hangat dari mereka yang sudah mencicipi legendanya.</p>
+            </div>
+
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Dagingnya sangat empuk, tidak prengus sama sekali. Suasana vintage-nya benar-benar membawa nostalgia! Wajib mampir kalau ke Jombang."</p>
+                    <h4>- Budi Santoso</h4>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Gule kambingnya juara! Kuahnya kental dan rempahnya sangat terasa. Makan siang sama keluarga di sini selalu jadi pilihan utama."</p>
+                    <h4>- Siti Aminah</h4>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Sate kambing terenak yang pernah saya coba. Bumbu kecapnya pas, potongannya besar. Kualitas rasanya konsisten dari tahun ke tahun."</p>
+                    <h4>- Reza Pahlevi</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeri" class="container">
+        <div class="text-center gallery-header">
+            <h3 class="section-title">Potret Sudut Legenda</h3>
+            <p class="section-subtitle">Mengintip suasana hangat di Sate Kambing Pak Slamet.</p>
+        </div>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tampak Depan Warung">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Suasana Ruang Makan">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="https://images.unsplash.com/photo-1528605105345-5344ea20e269?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pikulan Rotan Bersejarah">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Proses Membakar Sate">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="https://images.unsplash.com/photo-1585518419759-7fe2e0fbf8a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Detail Interior Vintage">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(this.querySelector('img').src)">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Suasana Pengunjung">
+            </div>
+        </div>
+    </section>
+
+    <div id="lightbox" onclick="closeLightbox()">
+        <span id="lightbox-close">×</span>
+        <img id="lightbox-img" src="" alt="Zoomed Image">
+    </div>
+
+    <section id="lokasi" class="bg-light">
+        <div class="container location-grid">
+            <div class="location-info">
+                <h3 class="section-title">Singgah dan Cicipi</h3>
+                <p>Kami menanti kedatangan Anda untuk menikmati kehangatan dan kenikmatan yang sulit dilupakan di tengah hiruk-pikuk kota Jombang.</p>
+                <ul class="contact-details">
+                    <li><strong>📍 Alamat:</strong> Jl. KH. Wahid Hasyim No.21, Kepanjen, Candi Mulyo, Kec. Jombang</li>
+                    <li><strong>📞 Telepon:</strong> 0812-3583-545</li>
+                    <li><strong>⏰ Jam Buka:</strong> Setiap Hari</li>
+                    <li><strong>🏡 Suasana:</strong> Bangunan rumah lama bergaya vintage nan hangat</li>
+                </ul>
+                <a href="https://gofood.co.id/jombang/restaurant/sate-pak-slamet-ringin-contong-6c5cd887-bf4a-47ea-92df-86bbc55b22c3?as=gmaps" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top: 1rem;">Pesan via GoFood</a>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1125.3977929529124!2d112.23826073148487!3d-7.539232354739878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78411ceb2a1859%3A0xae26952a058f69fd!2sSate%20Kambing%20P.%20Slamet%20-%20Ringin%20Contong!5e1!3m2!1sid!2sid!4v1771746865724!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="container">
+        <div class="text-center faq-header">
+            <h3 class="section-title">Pertanyaan Umum</h3>
+            <p class="section-subtitle">Informasi yang sering ditanyakan oleh pelanggan kami.</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">Apakah tersedia area parkir?</button>
+                <div class="faq-answer">
+                    <p>Ya, tersedia area parkir yang cukup memadai untuk kendaraan roda dua maupun roda empat di sekitar area warung kami.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Apakah menerima pesanan dalam jumlah besar / katering?</button>
+                <div class="faq-answer">
+                    <p>Tentu saja! Kami menerima pesanan dalam jumlah besar untuk acara keluarga, syukuran, atau katering. Silakan hubungi kami melalui WhatsApp untuk detail lebih lanjut.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Apakah bisa pesan lewat aplikasi online?</button>
+                <div class="faq-answer">
+                    <p>Bisa, menu Sate dan Gule Kambing Pak Slamet sudah tersedia dan dapat dipesan melalui aplikasi GoFood.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container text-center footer-content">
+            <h2 class="logo" style="color: var(--bg-color);">Sate Pak Slamet</h2>
+            <p>© 2026 Sate Kambing Pak Slamet Ringin Contong. Menjaga Tradisi Kuliner Jombang.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/628123583545?text=Halo%20Sate%20Pak%20Slamet,%20saya%20ingin%20bertanya..." class="floating-wa" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16.002 0c-8.837 0-16 7.163-16 16 0 2.816.732 5.514 2.128 7.896l-2.13 7.777 7.954-2.088c2.315 1.282 4.907 1.958 7.585 1.958 8.836 0 16-7.163 16-16s-7.164-16-16-16zm0 29.077c-2.395 0-4.74-.644-6.8-1.865l-.487-.288-5.045 1.325 1.35-4.922-.317-.504c-1.343-2.14-2.05-4.608-2.05-7.18 0-7.476 6.082-13.558 13.56-13.558 7.478 0 13.558 6.082 13.558 13.558s-6.08 13.557-13.558 13.557zm7.447-10.156c-.408-.204-2.414-1.192-2.788-1.328-.374-.136-.646-.204-.918.204-.272.408-1.054 1.328-1.292 1.602-.238.272-.476.306-.884.102-.408-.204-1.722-.635-3.28-2.025-1.213-1.082-2.03-2.418-2.268-2.826-.238-.408-.026-.63.178-.833.183-.183.408-.476.612-.714.204-.238.272-.408.408-.68.136-.272.068-.51-.034-.714-.102-.204-.918-2.213-1.258-3.03-.33-.8-.666-.692-.918-.704-.238-.012-.51-.012-.782-.012s-.714.102-1.088.51c-.374.408-1.428 1.396-1.428 3.404s1.462 3.948 1.666 4.22c.204.272 2.88 4.398 6.974 6.166.974.42 1.734.672 2.328.86.976.31 1.866.266 2.568.16 7.82-.116 2.414-1.634 2.754-3.214.34-1.58.34-2.936.238-3.214-.102-.272-.374-.408-.782-.612z"/>
+        </svg>
+    </a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        const navbarHeight = document.getElementById('navbar').offsetHeight;
+                        const targetPosition = targetSection.offsetTop - navbarHeight;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+// Show navbar and add shadow on scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                // Change '100' to whatever scroll distance you prefer
+                if (window.scrollY > 100) {
+                    navbar.classList.add('navbar-scrolled');
+                } else {
+                    navbar.classList.remove('navbar-scrolled');
+                }
+            });
+
+            // FAQ Accordion Logic
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    // Close all
+                    faqItems.forEach(faq => {
+                        faq.classList.remove('active');
+                        faq.querySelector('.faq-answer').style.maxHeight = null;
+                    });
+                    // Open clicked if it wasn't active
+                    if (!isActive) {
+                        item.classList.add('active');
+                        const answer = item.querySelector('.faq-answer');
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                    }
+                });
+            });
+
+            // --- GSAP ANIMATIONS --- //
+            gsap.registerPlugin(ScrollTrigger);
+
+            const tl = gsap.timeline();
+
+            tl.from(".hero-content .subtitle", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out", delay: 0.3 }, "-=0.5")
+              .from(".hero-content .title", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
+              .from(".hero-content .description", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
+              .from(".cta-group", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6");
+
+            gsap.from(".history-image", { scrollTrigger: { trigger: "#sejarah", start: "top 80%" }, x: -50, opacity: 0, duration: 1, ease: "power3.out" });
+            gsap.from(".history-text", { scrollTrigger: { trigger: "#sejarah", start: "top 80%" }, x: 50, opacity: 0, duration: 1, ease: "power3.out" });
+
+            // Menu Book GSAP
+            gsap.from(".menu-header", { scrollTrigger: { trigger: "#menu", start: "top 85%" }, y: 30, opacity: 0, duration: 0.8, ease: "power3.out" });
+            gsap.from(".menu-book", { scrollTrigger: { trigger: ".menu-book-wrapper", start: "top 85%" }, y: 50, opacity: 0, duration: 1, ease: "power3.out" });
+            gsap.from(".menu-item-list li", { scrollTrigger: { trigger: ".menu-book", start: "top 80%" }, x: -20, opacity: 0, duration: 0.5, stagger: 0.1, ease: "power2.out" });
+
+            // Testimonials GSAP
+            gsap.from(".testimonial-card", { scrollTrigger: { trigger: ".testimonial-grid", start: "top 85%" }, y: 30, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power3.out" });
+
+            // Gallery GSAP
+            gsap.from(".gallery-header", { scrollTrigger: { trigger: "#galeri", start: "top 85%" }, y: 30, opacity: 0, duration: 0.8, ease: "power3.out" });
+            gsap.from(".gallery-item", { scrollTrigger: { trigger: ".gallery-grid", start: "top 85%" }, scale: 0.8, opacity: 0, duration: 0.8, stagger: 0.1, ease: "back.out(1.7)" });
+
+            gsap.from(".location-info", { scrollTrigger: { trigger: "#lokasi", start: "top 80%" }, x: -50, opacity: 0, duration: 1, ease: "power3.out" });
+            gsap.from(".map-container", { scrollTrigger: { trigger: "#lokasi", start: "top 80%" }, x: 50, opacity: 0, duration: 1, ease: "power3.out" });
+
+            // FAQ GSAP
+            gsap.from(".faq-header", { scrollTrigger: { trigger: "#faq", start: "top 85%" }, y: 30, opacity: 0, duration: 0.8, ease: "power3.out" });
+            gsap.from(".faq-item", { scrollTrigger: { trigger: ".faq-container", start: "top 85%" }, x: -30, opacity: 0, duration: 0.6, stagger: 0.15, ease: "power3.out" });
+
+            gsap.from(".footer-content", { scrollTrigger: { trigger: "footer", start: "top 95%" }, y: 30, opacity: 0, duration: 1, ease: "power3.out" });
+        });
+
+        // Lightbox Functions
+        function openLightbox(imgSrc) {
+            document.getElementById('lightbox-img').src = imgSrc;
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            setTimeout(() => { document.getElementById('lightbox-img').src = ""; }, 300);
+        }
+    </script>
+</body>
+</html>
